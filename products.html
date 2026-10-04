@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Devices — Diamond Nova</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --black:#0a0a09;
+  --dark:#11110f;
+  --cream:#f5f1e9;
+  --paper:#f8f5ef;
+  --muted:#77736b;
+  --line:rgba(10,10,9,.14);
+  --white:#fffdf8;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--paper);
+  color:var(--black);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+}
+
+/* =========================
+   LOADER
+========================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:var(--black);
+  color:var(--cream);
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:
+    opacity .8s ease,
+    visibility .8s ease;
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-inner{
+  text-align:center;
+}
+
+.loader-name{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(28px,5vw,58px);
+  letter-spacing:.04em;
+}
+
+.loader-small{
+  margin-top:10px;
+  font-size:10px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  opacity:.55;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:82px;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 5vw;
+
+  color:var(--black);
+
+  transition:
+    background .35s ease,
+    color .35s ease,
+    border-color .35s ease;
+
+  border-bottom:1px solid transparent;
+}
+
+.nav.scrolled{
+  background:rgba(248,245,239,.94);
+  backdrop-filter:blur(16px);
+  border-color:var(--line);
+}
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo-mark{
+  width:38px;
+  height:38px;
+  border:1px solid currentColor;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-family:"Playfair Display",serif;
+  font-size:19px;
+}
+
+.logo-text{
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:32px;
+}
+
+.nav-links a{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.17em;
+  position:relative;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  width:0;
+  height:1px;
+  background:currentColor;
+  transition:.3s ease;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-menu-btn{
+  display:none;
+  border:0;
+  background:none;
+  cursor:pointer;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu{
+  position:fixed;
+  inset:0;
+  background:var(--black);
+  color:var(--cream);
+  z-index:900;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  padding:10vw;
+
+  transform:translateY(-100%);
+  transition:transform .55s cubic-bezier(.77,0,.18,1);
+}
+
+.mobile-menu.open{
+  transform:translateY(0);
+}
+
+.mobile-menu a{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(42px,12vw,90px);
+  line-height:1.05;
+  margin:7px 0;
+}
+
+.mobile-close{
+  position:absolute;
+  top:30px;
+  right:7vw;
+  border:0;
+  background:none;
+  color:var(--cream);
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* =========================
+   PAGE HERO
+========================= */
+
+.page-hero{
+  min-height:76vh;
+  background:var(--black);
+  color:var(--cream);
+
+  padding:170px 5vw 90px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.eyebrow{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.25em;
+  opacity:.58;
+  margin-bottom:28px;
+}
+
+.page-hero h1{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+  font-size:clamp(64px,11vw,170px);
+  line-height:.87;
+  letter-spacing:-.055em;
+  max-width:1100px;
+}
+
+.hero-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-top:70px;
+  gap:30px;
+}
+
+.hero-copy{
+  max-width:430px;
+  font-size:14px;
+  line-height:1.8;
+  opacity:.67;
+}
+
+.hero-note{
+  font-size:9px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  opacity:.45;
+  text-align:right;
+}
+
+/* =========================
+   COLLECTION HEADER
+========================= */
+
+.collection{
+  padding:110px 5vw 50px;
+  background:var(--paper);
+}
+
+.collection-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  border-bottom:1px solid var(--line);
+  padding-bottom:25px;
+}
+
+.collection-title{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(38px,5vw,72px);
+  font-weight:400;
+  letter-spacing:-.04em;
+}
+
+.collection-count{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:var(--muted);
+}
+
+/* =========================
+   FILTERS
+========================= */
+
+.filters{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  padding:28px 0 45px;
+}
+
+.filter-btn{
+  border:1px solid var(--line);
+  background:transparent;
+
+  padding:10px 16px;
+
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+
+  cursor:pointer;
+
+  transition:
+    background .25s ease,
+    color .25s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+  background:var(--black);
+  color:var(--cream);
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:22px;
+  row-gap:80px;
+  padding-bottom:120px;
+}
+
+.product-card{
+  position:relative;
+  cursor:pointer;
+}
+
+.product-image{
+  position:relative;
+  height:600px;
+  background:#ebe7df;
+  overflow:hidden;
+}
+
+.product-image img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+
+  transition:
+    transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.product-card:hover .product-image img{
+  transform:scale(1.045);
+}
+
+.product-number{
+  position:absolute;
+  top:20px;
+  left:20px;
+
+  z-index:2;
+
+  width:34px;
+  height:34px;
+
+  border:1px solid rgba(255,255,255,.55);
+  color:white;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:9px;
+
+  backdrop-filter:blur(8px);
+}
+
+.product-condition{
+  position:absolute;
+  right:20px;
+  top:20px;
+
+  z-index:2;
+
+  padding:9px 12px;
+
+  background:rgba(10,10,9,.7);
+  color:white;
+
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+
+  backdrop-filter:blur(8px);
+}
+
+.product-info{
+  padding-top:20px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px;
+  align-items:end;
+}
+
+.product-category{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.product-name{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(25px,3vw,40px);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-.025em;
+}
+
+.product-spec{
+  margin-top:9px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.product-price{
+  text-align:right;
+}
+
+.price-label{
+  display:block;
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--muted);
+  margin-bottom:5px;
+}
+
+.price{
+  font-family:"Playfair Display",serif;
+  font-size:22px;
+  white-space:nowrap;
+}
+
+/* =========================
+   PRODUCT DETAIL LINK
+========================= */
+
+.product-open{
+  margin-top:16px;
+
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+
+  border-bottom:1px solid var(--black);
+  padding-bottom:5px;
+}
+
+.product-open span{
+  transition:transform .25s ease;
+}
+
+.product-card:hover .product-open span{
+  transform:translateX(5px);
+}
+
+/* =========================
+   NOTE
+========================= */
+
+.catalogue-note{
+  background:#e9e4da;
+  padding:28px 5vw;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:30px;
+
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.catalogue-note p{
+  max-width:650px;
+  font-size:11px;
+  line-height:1.7;
+  color:#67635c;
+}
+
+.catalogue-note strong{
+  color:var(--black);
+  font-weight:500;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.final-cta{
+  background:var(--cream);
+  padding:150px 5vw;
+}
+
+.cta-label{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.24em;
+  color:var(--muted);
+  margin-bottom:30px;
+}
+
+.final-cta h2{
+  max-width:900px;
+
+  font-family:"Playfair Display",serif;
+  font-size:clamp(48px,8vw,115px);
+  font-weight:400;
+
+  line-height:.9;
+  letter-spacing:-.055em;
+}
+
+.cta-actions{
+  display:flex;
+  gap:14px;
+  margin-top:50px;
+  flex-wrap:wrap;
+}
+
+.cta-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:15px 22px;
+
+  border:1px solid var(--black);
+
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.17em;
+
+  transition:.25s ease;
+}
+
+.cta-btn.primary{
+  background:var(--black);
+  color:var(--cream);
+}
+
+.cta-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:var(--black);
+  color:var(--cream);
+  padding:60px 5vw 30px;
+}
+
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:50px;
+  padding-bottom:70px;
+}
+
+.footer-brand{
+  font-family:"Playfair Display",serif;
+  font-size:36px;
+}
+
+.footer-small{
+  margin-top:10px;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  opacity:.45;
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:25px;
+  align-content:flex-start;
+}
+
+.footer-links a{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  opacity:.7;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.15);
+  padding-top:22px;
+
+  display:flex;
+  justify-content:space-between;
+
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+
+  opacity:.4;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* =========================
+   HIDDEN FILTER ITEMS
+========================= */
+
+.product-card.hidden{
+  display:none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .nav{
+    height:72px;
+    padding:0 6vw;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav-menu-btn{
+    display:block;
+    color:currentColor;
+    font-size:22px;
+  }
+
+  .page-hero{
+    min-height:72vh;
+    padding:140px 6vw 65px;
+  }
+
+  .hero-bottom{
+    display:block;
+    margin-top:45px;
+  }
+
+  .hero-note{
+    text-align:left;
+    margin-top:25px;
+  }
+
+  .collection{
+    padding:85px 6vw 35px;
+  }
+
+  .products-grid{
+    grid-template-columns:1fr;
+    row-gap:65px;
+    padding-bottom:85px;
+  }
+
+  .product-image{
+    height:115vw;
+    max-height:620px;
+  }
+
+  .product-info{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .product-price{
+    text-align:left;
+  }
+
+  .catalogue-note{
+    padding:28px 6vw;
+    display:block;
+  }
+
+  .catalogue-note p{
+    font-size:10px;
+  }
+
+  .final-cta{
+    padding:100px 6vw;
+  }
+
+  .footer-top{
+    display:block;
+  }
+
+  .footer-links{
+    margin-top:40px;
+  }
+
+  .footer-bottom{
+    display:block;
+    line-height:1.8;
+  }
+
+}
+
+@media(max-width:500px){
+
+  .logo-text{
+    font-size:9px;
+  }
+
+  .page-hero h1{
+    font-size:18vw;
+  }
+
+  .collection-top{
+    align-items:center;
+  }
+
+  .collection-title{
+    font-size:42px;
+  }
+
+  .collection-count{
+    font-size:8px;
+  }
+
+  .filters{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:30px;
+    scrollbar-width:none;
+  }
+
+  .filter-btn{
+    flex:none;
+  }
+
+  .product-name{
+    font-size:30px;
+  }
+
+  .final-cta h2{
+    font-size:56px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     LOADER
+========================= -->
+
+<div class="loader" id="loader">
+
+  <div class="loader-inner">
+
+    <div class="loader-name">
+      DIAMOND NOVA
+    </div>
+
+    <div class="loader-small">
+      Phone Trading LLC · Dubai
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     NAV
+========================= -->
+
+<nav class="nav" id="nav">
+
+  <a href="index.html" class="nav-left">
+
+    <div class="logo-mark">
+      D
+    </div>
+
+    <div class="logo-text">
+      Diamond Nova
+    </div>
+
+  </a>
+
+
+  <div class="nav-links">
+
+    <a href="index.html#about">
+      About
+    </a>
+
+    <a href="products.html">
+      Devices
+    </a>
+
+    <a href="index.html#categories">
+      Categories
+    </a>
+
+    <a href="index.html#visit">
+      Visit
+    </a>
+
+    <a href="https://wa.me/971505980338" target="_blank">
+      WhatsApp
+    </a>
+
+  </div>
+
+
+  <button
+    class="nav-menu-btn"
+    id="menuBtn"
+    aria-label="Open menu">
+    ☰
+  </button>
+
+</nav>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+  <button class="mobile-close" id="closeMenu">
+    ×
+  </button>
+
+  <a href="index.html">
+    Home
+  </a>
+
+  <a href="products.html">
+    Devices
+  </a>
+
+  <a href="index.html#about">
+    About
+  </a>
+
+  <a href="index.html#categories">
+    Categories
+  </a>
+
+  <a href="index.html#visit">
+    Visit
+  </a>
+
+  <a
+    href="https://wa.me/971505980338"
+    target="_blank">
+    WhatsApp
+  </a>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="page-hero">
+
+  <div class="eyebrow reveal">
+    01 / The collection
+  </div>
+
+  <h1 class="reveal">
+    Devices<br>
+    worth choosing.
+  </h1>
+
+  <div class="hero-bottom">
+
+    <p class="hero-copy reveal">
+      Explore a curated selection of smartphones
+      and personal technology presented by
+      Diamond Nova in Al Murar, Dubai.
+    </p>
+
+    <div class="hero-note reveal">
+      Pre-owned & selected devices<br>
+      Enquire for current availability
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     COLLECTION
+========================= -->
+
+<section class="collection">
+
+  <div class="collection-top reveal">
+
+    <h2 class="collection-title">
+      Current selection
+    </h2>
+
+    <div class="collection-count">
+      10 devices
+    </div>
+
+  </div>
+
+
+  <!-- FILTERS -->
+
+  <div class="filters reveal">
+
+    <button
+      class="filter-btn active"
+      data-filter="all">
+      All
+    </button>
+
+    <button
+      class="filter-btn"
+      data-filter="iphone">
+      iPhone
+    </button>
+
+    <button
+      class="filter-btn"
+      data-filter="samsung">
+      Samsung
+    </button>
+
+    <button
+      class="filter-btn"
+      data-filter="android">
+      Android
+    </button>
+
+    <button
+      class="filter-btn"
+      data-filter="laptop">
+      Laptops
+    </button>
+
+  </div>
+
+
+  <div class="products-grid">
+
+
+    <!-- PRODUCT 01 -->
+
+    <article
+      class="product-card reveal"
+      data-category="iphone"
+      data-id="iphone-17-pro-max">
+
+      <a href="product.html?id=iphone-17-pro-max">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            01
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/IPhone_17_Pro_Max_2026.jpg?width=1200"
+            alt="Apple iPhone 17 Pro Max">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              Apple · iPhone
+            </div>
+
+            <h3 class="product-name">
+              iPhone 17 Pro Max
+            </h3>
+
+            <div class="product-spec">
+              256GB · Cosmic Orange
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class="price">
+              AED 4,699
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+    <!-- PRODUCT 02 -->
+
+    <article
+      class="product-card reveal"
+      data-category="iphone"
+      data-id="iphone-16-pro-max">
+
+      <a href="product.html?id=iphone-16-pro-max">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            02
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/IPhone_16_Pro_Max_%2854252162653%29.jpg?width=1200"
+            alt="Apple iPhone 16 Pro Max">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              Apple · iPhone
+            </div>
+
+            <h3 class="product-name">
+              iPhone 16 Pro Max
+            </h3>
+
+            <div class="product-spec">
+              256GB · Natural Titanium
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class="price">
+              AED 3,499
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+    <!-- PRODUCT 03 -->
+
+    <article
+      class="product-card reveal"
+      data-category="iphone"
+      data-id="iphone-15-pro">
+
+      <a href="product.html?id=iphone-15-pro">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            03
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1400&q=90"
+            alt="Apple iPhone 15 Pro">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              Apple · iPhone
+            </div>
+
+            <h3 class="product-name">
+              iPhone 15 Pro
+            </h3>
+
+            <div class="product-spec">
+              256GB · Titanium
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class="price">
+              AED 2,499
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+    <!-- PRODUCT 04 -->
+
+    <article
+      class="product-card reveal"
+      data-category="samsung"
+      data-id="galaxy-s25-ultra">
+
+      <a href="product.html?id=galaxy-s25-ultra">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            04
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Samsung_Galaxy_S25_Ultra_2025_%281%29.jpg?width=1200"
+            alt="Samsung Galaxy S25 Ultra">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              Samsung · Galaxy
+            </div>
+
+            <h3 class="product-name">
+              Galaxy S25 Ultra
+            </h3>
+
+            <div class="product-spec">
+              256GB · Titanium Silverblue
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class=              AED 3,299
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+    <!-- PRODUCT 05 -->
+
+    <article
+      class="product-card reveal"
+      data-category="samsung"
+      data-id="galaxy-s24-ultra">
+
+      <a href="product.html?id=galaxy-s24-ultra">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            05
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?auto=format&fit=crop&w=1400&q=90"
+            alt="Samsung Galaxy S24 Ultra">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              Samsung · Galaxy
+            </div>
+
+            <h3 class="product-name">
+              Galaxy S24 Ultra
+            </h3>
+
+            <div class="product-spec">
+              256GB · Titanium Gray
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class="price">
+              AED 2,699
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+    <!-- PRODUCT 06 -->
+
+    <article
+      class="product-card reveal"
+      data-category="android"
+      data-id="pixel-9-pro">
+
+      <a href="product.html?id=pixel-9-pro">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            06
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1400&q=90"
+            alt="Google Pixel 9 Pro">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              Google · Pixel
+            </div>
+
+            <h3 class="product-name">
+              Pixel 9 Pro
+            </h3>
+
+            <div class="product-spec">
+              256GB · Obsidian
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class="price">
+              AED 2,399
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+    <!-- PRODUCT 07 -->
+
+    <article
+      class="product-card reveal"
+      data-category="android"
+      data-id="oneplus-13">
+
+      <a href="product.html?id=oneplus-13">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            07
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1607936854279-55e8d4c5a0c1?auto=format&fit=crop&w=1400&q=90"
+            alt="OnePlus 13 smartphone">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              OnePlus · Android
+            </div>
+
+            <h3 class="product-name">
+              OnePlus 13
+            </h3>
+
+            <div class="product-spec">
+              256GB · Midnight
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class="price">
+              AED 2,299
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+    <!-- PRODUCT 08 -->
+
+    <article
+      class="product-card reveal"
+      data-category="laptop"
+      data-id="macbook-pro-14">
+
+      <a href="product.html?id=macbook-pro-14">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            08
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=1400&q=90"
+            alt="MacBook Pro 14">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              Apple · MacBook
+            </div>
+
+            <h3 class="product-name">
+              MacBook Pro 14"
+            </h3>
+
+            <div class="product-spec">
+              M4 · 16GB · 512GB
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class="price">
+              AED 5,499
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+    <!-- PRODUCT 09 -->
+
+    <article
+      class="product-card reveal"
+      data-category="laptop"
+      data-id="macbook-air-13">
+
+      <a href="product.html?id=macbook-air-13">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            09
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1400&q=90"
+            alt="MacBook Air 13">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              Apple · MacBook
+            </div>
+
+            <h3 class="product-name">
+              MacBook Air 13"
+            </h3>
+
+            <div class="product-spec">
+              M3 · 16GB · 256GB
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class="price">
+              AED 3,399
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+    <!-- PRODUCT 10 -->
+
+    <article
+      class="product-card reveal"
+      data-category="laptop"
+      data-id="dell-xps-15">
+
+      <a href="product.html?id=dell-xps-15">
+
+        <div class="product-image">
+
+          <div class="product-number">
+            10
+          </div>
+
+          <div class="product-condition">
+            Demo listing
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=1400&q=90"
+            alt="Dell XPS 15 laptop">
+
+        </div>
+
+
+        <div class="product-info">
+
+          <div>
+
+            <div class="product-category">
+              Dell · XPS
+            </div>
+
+            <h3 class="product-name">
+              Dell XPS 15
+            </h3>
+
+            <div class="product-spec">
+              16GB · 512GB SSD · Core i7
+            </div>
+
+            <div class="product-open">
+              View device
+              <span>→</span>
+            </div>
+
+          </div>
+
+
+          <div class="product-price">
+
+            <span class="price-label">
+              Demo price
+            </span>
+
+            <div class="price">
+              AED 3,099
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CATALOGUE NOTE
+========================= -->
+
+<section class="catalogue-note">
+
+  <p>
+    <strong>Catalogue note.</strong>
+    This is a representative selection for the Diamond Nova
+    website demo. Prices, storage, condition and availability
+    should be confirmed with the store before purchase.
+  </p>
+
+  <div class="hero-note">
+    Updated selection<br>
+    Available in Al Murar
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="final-cta">
+
+  <div class="cta-label">
+    02 / Find your device
+  </div>
+
+  <h2>
+    See something<br>
+    worth asking about?
+  </h2>
+
+  <div class="cta-actions">
+
+    <a
+      href="https://wa.me/971505980338?text=Hi%20Diamond%20Nova%2C%20I%27m%20interested%20in%20a%20device%20from%20your%20website."
+      target="_blank"
+      class="cta-btn primary">
+
+      WhatsApp Diamond Nova
+
+    </a>
+
+    <a
+      href="index.html#visit"
+      class="cta-btn">
+
+      Visit the store
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="footer-top">
+
+    <div>
+
+      <div class="footer-brand">
+        Diamond Nova
+      </div>
+
+      <div class="footer-small">
+        Phone Trading LLC · Dubai
+      </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="products.html">
+        Devices
+      </a>
+
+      <a href="index.html#categories">
+        Categories
+      </a>
+
+      <a href="index.html#visit">
+        Visit
+      </a>
+
+      <a
+        href="https://wa.me/971505980338"
+        target="_blank">
+        WhatsApp
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>
+      © 2026 Diamond Nova
+    </span>
+
+    <span>
+      Al Murar · Dubai · UAE
+    </span>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* =========================
+   LOADER
+========================= */
+
+window.addEventListener("load",function(){
+
+  const loader=document.getElementById("loader");
+
+  setTimeout(function(){
+
+    loader.classList.add("hide");
+
+  },500);
+
+});
+
+
+/* =========================
+   NAV
+========================= */
+
+const nav=document.getElementById("nav");
+
+function updateNav(){
+
+  if(window.scrollY>40){
+
+    nav.classList.add("scrolled");
+
+  }else{
+
+    nav.classList.remove("scrolled");
+
+  }
+
+}
+
+window.addEventListener("scroll",updateNav);
+
+updateNav();
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuBtn=document.getElementById("menuBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+const closeMenu=document.getElementById("closeMenu");
+
+menuBtn.addEventListener("click",function(){
+
+  mobileMenu.classList.add("open");
+
+});
+
+closeMenu.addEventListener("click",function(){
+
+  mobileMenu.classList.remove("open");
+
+});
+
+document.querySelectorAll(".mobile-menu a").forEach(function(link){
+
+  link.addEventListener("click",function(){
+
+    mobileMenu.classList.remove("open");
+
+  });
+
+});
+
+
+/* =========================
+   FILTERS
+========================= */
+
+const filterButtons=document.querySelectorAll(".filter-btn");
+const productCards=document.querySelectorAll(".product-card");
+
+filterButtons.forEach(function(button){
+
+  button.addEventListener("click",function(){
+
+    const filter=button.dataset.filter;
+
+    filterButtons.forEach(function(btn){
+
+      btn.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+
+    productCards.forEach(function(card){
+
+      const category=card.dataset.category;
+
+      if(filter==="all" || category===filter){
+
+        card.classList.remove("hidden");
+
+      }else{
+
+        card.classList.add("hidden");
+
+      }
+
+    });
+
+  });
+
+});
+
+
+/* =========================
+   URL CATEGORY FILTER
+========================= */
+
+const params=new URLSearchParams(window.location.search);
+const urlCategory=params.get("category");
+
+if(urlCategory){
+
+  const matchingButton=document.querySelector(
+    `.filter-btn[data-filter="${urlCategory}"]`
+  );
+
+  if(matchingButton){
+
+    matchingButton.click();
+
+  }
+
+}
+
+
+/* =========================
+   REVEAL
+========================= */
+
+const revealItems=document.querySelectorAll(".reveal");
+
+const revealObserver=new IntersectionObserver(
+
+  function(entries){
+
+    entries.forEach(function(entry){
+
+      if(entry.isIntersecting){
+
+        entry.target.classList.add("visible");
+
+        revealObserver.unobserve(entry.target);
+
+      }
+
+    });
+
+  },
+
+  {
+    threshold:.08
+  }
+
+);
+
+revealItems.forEach(function(item){
+
+  revealObserver.observe(item);
+
+});
+
+
+/* =========================
+   ESCAPE MENU
+========================= */
+
+document.addEventListener("keydown",function(event){
+
+  if(event.key==="Escape"){
+
+    mobileMenu.classList.remove("open");
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
