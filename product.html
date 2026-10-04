@@ -1,0 +1,2414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Device — Diamond Nova</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
+:root{
+  --black:#0a0a09;
+  --dark:#11110f;
+  --cream:#f5f1e9;
+  --paper:#f8f5ef;
+  --muted:#77736b;
+  --line:rgba(10,10,9,.14);
+  --white:#fffdf8;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--paper);
+  color:var(--black);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+
+  background:var(--black);
+  color:var(--cream);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:
+    opacity .7s ease,
+    visibility .7s ease;
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-inner{
+  text-align:center;
+}
+
+.loader-name{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(30px,5vw,60px);
+}
+
+.loader-small{
+  margin-top:10px;
+
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.25em;
+
+  opacity:.5;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:82px;
+
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 5vw;
+
+  color:var(--black);
+
+  border-bottom:1px solid transparent;
+
+  transition:
+    background .35s ease,
+    border-color .35s ease;
+}
+
+.nav.scrolled{
+  background:rgba(248,245,239,.94);
+  backdrop-filter:blur(16px);
+
+  border-color:var(--line);
+}
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo-mark{
+  width:38px;
+  height:38px;
+
+  border:1px solid currentColor;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-family:"Playfair Display",serif;
+  font-size:19px;
+}
+
+.logo-text{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:32px;
+}
+
+.nav-links a{
+  position:relative;
+
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.17em;
+}
+
+.nav-links a::after{
+  content:"";
+
+  position:absolute;
+  left:0;
+  bottom:-7px;
+
+  width:0;
+  height:1px;
+
+  background:currentColor;
+
+  transition:.3s ease;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-menu-btn{
+  display:none;
+
+  border:0;
+  background:none;
+
+  font-size:22px;
+  cursor:pointer;
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu{
+  position:fixed;
+  inset:0;
+
+  z-index:900;
+
+  background:var(--black);
+  color:var(--cream);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  padding:10vw;
+
+  transform:translateY(-100%);
+
+  transition:
+    transform .55s cubic-bezier(.77,0,.18,1);
+}
+
+.mobile-menu.open{
+  transform:translateY(0);
+}
+
+.mobile-menu a{
+  font-family:"Playfair Display",serif;
+
+  font-size:clamp(42px,12vw,90px);
+  line-height:1.05;
+
+  margin:7px 0;
+}
+
+.mobile-close{
+  position:absolute;
+  top:30px;
+  right:7vw;
+
+  border:0;
+  background:none;
+
+  color:var(--cream);
+
+  font-size:28px;
+  cursor:pointer;
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+.back-row{
+  padding:125px 5vw 25px;
+}
+
+.back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.17em;
+
+  color:var(--muted);
+}
+
+.back-link span{
+  transition:transform .25s ease;
+}
+
+.back-link:hover span{
+  transform:translateX(-4px);
+}
+
+
+/* =========================
+   PRODUCT HERO
+========================= */
+
+.product-hero{
+  padding:35px 5vw 110px;
+
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
+
+  gap:7vw;
+
+  align-items:center;
+}
+
+.product-visual{
+  position:relative;
+
+  height:min(72vh,720px);
+
+  background:#e9e5dd;
+
+  overflow:hidden;
+}
+
+.product-visual img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+
+  transition:transform 1s ease;
+}
+
+.product-visual:hover img{
+  transform:scale(1.025);
+}
+
+.visual-label{
+  position:absolute;
+  top:22px;
+  left:22px;
+
+  padding:10px 13px;
+
+  background:rgba(10,10,9,.72);
+  color:white;
+
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+
+  backdrop-filter:blur(10px);
+}
+
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.product-info{
+  max-width:590px;
+}
+
+.product-category{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.22em;
+
+  color:var(--muted);
+
+  margin-bottom:22px;
+}
+
+.product-title{
+  font-family:"Playfair Display",serif;
+
+  font-size:clamp(54px,6vw,94px);
+
+  font-weight:400;
+
+  line-height:.9;
+
+  letter-spacing:-.055em;
+}
+
+.product-description{
+  margin-top:30px;
+
+  max-width:500px;
+
+  font-size:13px;
+  line-height:1.8;
+
+  color:#69655d;
+}
+
+.product-price-block{
+  margin-top:38px;
+
+  padding-top:25px;
+
+  border-top:1px solid var(--line);
+}
+
+.price-label{
+  display:block;
+
+  margin-bottom:5px;
+
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.17em;
+
+  color:var(--muted);
+}
+
+.product-price{
+  font-family:"Playfair Display",serif;
+
+  font-size:32px;
+}
+
+.product-meta{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+
+  margin-top:30px;
+}
+
+.meta-item{
+  padding:18px 0;
+}
+
+.meta-item:nth-child(odd){
+  border-right:1px solid var(--line);
+  padding-right:20px;
+}
+
+.meta-item:nth-child(even){
+  padding-left:20px;
+}
+
+.meta-label{
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+
+  color:var(--muted);
+
+  margin-bottom:7px;
+}
+
+.meta-value{
+  font-size:12px;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.product-actions{
+  display:flex;
+  gap:10px;
+
+  margin-top:30px;
+
+  flex-wrap:wrap;
+}
+
+.action-btn{
+  min-height:52px;
+
+  padding:0 22px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid var(--black);
+
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.17em;
+
+  cursor:pointer;
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    color .25s ease;
+}
+
+.action-btn.primary{
+  background:var(--black);
+  color:var(--cream);
+}
+
+.action-btn:hover{
+  transform:translateY(-2px);
+}
+
+.action-btn.whatsapp{
+  background:#e8e3d9;
+}
+
+
+/* =========================
+   DETAILS
+========================= */
+
+.details-section{
+  background:var(--black);
+  color:var(--cream);
+
+  padding:120px 5vw;
+}
+
+.details-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:40px;
+
+  padding-bottom:30px;
+
+  border-bottom:1px solid rgba(255,255,255,.16);
+}
+
+.details-title{
+  font-family:"Playfair Display",serif;
+
+  font-size:clamp(40px,5vw,70px);
+
+  font-weight:400;
+
+  letter-spacing:-.04em;
+}
+
+.details-label{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+
+  opacity:.45;
+}
+
+.details-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+
+  gap:0 7vw;
+}
+
+.detail-row{
+  padding:25px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.12);
+
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.detail-name{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+
+  opacity:.45;
+}
+
+.detail-value{
+  font-size:12px;
+  text-align:right;
+
+  color:var(--cream);
+}
+
+
+/* =========================
+   ENQUIRY OVERLAY
+========================= */
+
+.enquiry-overlay{
+  position:fixed;
+  inset:0;
+
+  z-index:3000;
+
+  background:rgba(10,10,9,.7);
+
+  backdrop-filter:blur(12px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:25px;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:
+    opacity .35s ease,
+    visibility .35s ease;
+}
+
+.enquiry-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.enquiry-box{
+  width:min(680px,100%);
+
+  max-height:92vh;
+
+  overflow:auto;
+
+  background:var(--paper);
+
+  padding:45px;
+
+  position:relative;
+
+  transform:translateY(25px);
+
+  transition:transform .4s ease;
+}
+
+.enquiry-overlay.open .enquiry-box{
+  transform:translateY(0);
+}
+
+.enquiry-close{
+  position:absolute;
+
+  top:20px;
+  right:22px;
+
+  border:0;
+  background:none;
+
+  font-size:26px;
+
+  cursor:pointer;
+}
+
+.enquiry-label{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+
+  color:var(--muted);
+
+  margin-bottom:15px;
+}
+
+.enquiry-title{
+  font-family:"Playfair Display",serif;
+
+  font-size:clamp(38px,5vw,58px);
+
+  font-weight:400;
+
+  line-height:.95;
+
+  letter-spacing:-.04em;
+}
+
+.selected-product{
+  margin-top:20px;
+
+  padding:15px;
+
+  background:#ebe6dc;
+
+  font-size:11px;
+
+  border-left:2px solid var(--black);
+}
+
+.selected-product strong{
+  font-weight:500;
+}
+
+.form{
+  margin-top:30px;
+}
+
+.field{
+  margin-bottom:19px;
+}
+
+.field label{
+  display:block;
+
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.17em;
+
+  margin-bottom:8px;
+
+  color:var(--muted);
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+
+  border:1px solid var(--line);
+
+  background:transparent;
+
+  padding:14px 13px;
+
+  outline:none;
+
+  color:var(--black);
+
+  font-size:12px;
+
+  transition:border-color .2s ease;
+}
+
+.field textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:var(--black);
+}
+
+.form-submit{
+  width:100%;
+
+  min-height:54px;
+
+  border:1px solid var(--black);
+
+  background:var(--black);
+  color:var(--cream);
+
+  cursor:pointer;
+
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+
+  transition:.25s ease;
+}
+
+.form-submit:hover{
+  transform:translateY(-2px);
+}
+
+.form-small{
+  margin-top:12px;
+
+  font-size:8px;
+  line-height:1.6;
+
+  color:var(--muted);
+
+  text-align:center;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.final-cta{
+  padding:140px 5vw;
+
+  background:var(--cream);
+}
+
+.cta-label{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.22em;
+
+  color:var(--muted);
+
+  margin-bottom:28px;
+}
+
+.final-cta h2{
+  max-width:900px;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:clamp(48px,7vw,105px);
+
+  font-weight:400;
+
+  line-height:.9;
+
+  letter-spacing:-.055em;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:var(--black);
+  color:var(--cream);
+
+  padding:60px 5vw 30px;
+}
+
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+
+  gap:50px;
+
+  padding-bottom:70px;
+}
+
+.footer-brand{
+  font-family:"Playfair Display",serif;
+  font-size:36px;
+}
+
+.footer-small{
+  margin-top:9px;
+
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+
+  opacity:.45;
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:25px;
+  align-content:flex-start;
+}
+
+.footer-links a{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+
+  opacity:.7;
+}
+
+.footer-bottom{
+  padding-top:22px;
+
+  border-top:1px solid rgba(255,255,255,.15);
+
+  display:flex;
+  justify-content:space-between;
+
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+
+  opacity:.4;
+}
+
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .nav{
+    height:72px;
+    padding:0 6vw;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav-menu-btn{
+    display:block;
+  }
+
+  .back-row{
+    padding:110px 6vw 20px;
+  }
+
+  .product-hero{
+    grid-template-columns:1fr;
+
+    gap:45px;
+
+    padding:25px 6vw 80px;
+  }
+
+  .product-visual{
+    height:110vw;
+    max-height:650px;
+  }
+
+  .product-title{
+    font-size:16vw;
+  }
+
+  .details-section{
+    padding:90px 6vw;
+  }
+
+  .details-grid{
+    grid-template-columns:1fr;
+  }
+
+  .detail-row{
+    padding:20px 0;
+  }
+
+  .enquiry-box{
+    padding:35px 25px;
+  }
+
+  .final-cta{
+    padding:100px 6vw;
+  }
+
+  .footer-top{
+    display:block;
+  }
+
+  .footer-links{
+    margin-top:40px;
+  }
+
+  .footer-bottom{
+    display:block;
+    line-height:1.8;
+  }
+
+}
+
+@media(max-width:500px){
+
+  .logo-text{
+    font-size:9px;
+  }
+
+  .product-actions{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .action-btn{
+    width:100%;
+  }
+
+  .enquiry-overlay{
+    padding:12px;
+  }
+
+  .enquiry-box{
+    padding:32px 20px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     LOADER
+========================= -->
+
+<div class="loader" id="loader">
+
+  <div class="loader-inner">
+
+    <div class="loader-name">
+      DIAMOND NOVA
+    </div>
+
+    <div class="loader-small">
+      Phone Trading LLC · Dubai
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     NAV
+========================= -->
+
+<nav class="nav" id="nav">
+
+  <a href="index.html" class="nav-left">
+
+    <div class="logo-mark">
+      D
+    </div>
+
+    <div class="logo-text">
+      Diamond Nova
+    </div>
+
+  </a>
+
+
+  <div class="nav-links">
+
+    <a href="index.html#about">
+      About
+    </a>
+
+    <a href="products.html">
+      Devices
+    </a>
+
+    <a href="index.html#categories">
+      Categories
+    </a>
+
+    <a href="index.html#visit">
+      Visit
+    </a>
+
+    <a
+      href="https://wa.me/971505980338"
+      target="_blank">
+      WhatsApp
+    </a>
+
+  </div>
+
+
+  <button
+    class="nav-menu-btn"
+    id="menuBtn">
+    ☰
+  </button>
+
+</nav>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+  <button
+    class="mobile-close"
+    id="closeMenu">
+    ×
+  </button>
+
+  <a href="index.html">
+    Home
+  </a>
+
+  <a href="products.html">
+    Devices
+  </a>
+
+  <a href="index.html#about">
+    About
+  </a>
+
+  <a href="index.html#categories">
+    Categories
+  </a>
+
+  <a href="index.html#visit">
+    Visit
+  </a>
+
+  <a
+    href="https://wa.me/971505980338"
+    target="_blank">
+    WhatsApp
+  </a>
+
+</div>
+
+
+<!-- =========================
+     BACK LINK
+========================= -->
+
+<div class="back-row">
+
+  <a
+    href="products.html"
+    class="back-link">
+
+    <span>←</span>
+    Back to devices
+
+  </a>
+
+</div>
+
+
+<!-- =========================
+     PRODUCT HERO
+========================= -->
+
+<section class="product-hero">
+
+
+  <!-- IMAGE -->
+
+  <div class="product-visual reveal">
+
+    <div class="visual-label">
+      Diamond Nova · Device
+    </div>
+
+    <img
+      id="productImage"
+      src=""
+      alt="Product">
+
+  </div>
+
+
+  <!-- INFORMATION -->
+
+  <div class="product-info">
+
+
+    <div
+      class="product-category reveal"
+      id="productCategory">
+      Apple · iPhone
+    </div>
+
+
+    <h1
+      class="product-title reveal"
+      id="productName">
+      Loading...
+    </h1>
+
+
+    <p
+      class="product-description reveal"
+      id="productDescription">
+      Loading device information...
+    </p>
+
+
+    <div class="product-price-block reveal">
+
+      <span class="price-label">
+        Listed demo price
+      </span>
+
+      <div
+        class="product-price"
+        id="productPrice">
+        —
+      </div>
+
+    </div>
+
+
+    <div class="product-meta reveal">
+
+
+      <div class="meta-item">
+
+        <div class="meta-label">
+          Storage
+        </div>
+
+        <div
+          class="meta-value"
+          id="productStorage">
+          —
+        </div>
+
+      </div>
+
+
+      <div class="meta-item">
+
+        <div class="meta-label">
+          Condition
+        </div>
+
+        <div
+          class="meta-value"
+          id="productCondition">
+          —
+        </div>
+
+      </div>
+
+
+      <div class="meta-item">
+
+        <div class="meta-label">
+          Colour
+        </div>
+
+        <div
+          class="meta-value"
+          id="productColour">
+          —
+        </div>
+
+      </div>
+
+
+      <div class="meta-item">
+
+        <div class="meta-label">
+          Availability
+        </div>
+
+        <div
+          class="meta-value"
+          id="productAvailability">
+          Check with store
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="product-actions reveal">
+
+      <button
+        class="action-btn primary"
+        id="inquiryBtn">
+
+        Enquire / Order
+
+      </button>
+
+
+      <a
+        href="https://wa.me/971505980338"
+        target="_blank"
+        class="action-btn whatsapp">
+
+        WhatsApp
+
+      </a>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DETAILS
+========================= -->
+
+<section class="details-section">
+
+  <div class="details-header reveal">
+
+    <h2 class="details-title">
+      Device details
+    </h2>
+
+    <div class="details-label">
+      Specifications
+    </div>
+
+  </div>
+
+
+  <div class="details-grid">
+
+
+    <div class="detail-row reveal">
+
+      <div class="detail-name">
+        Model
+      </div>
+
+      <div
+        class="detail-value"
+        id="detailModel">
+        —
+      </div>
+
+    </div>
+
+
+    <div class="detail-row reveal">
+
+      <div class="detail-name">
+        Storage
+      </div>
+
+      <div
+        class="detail-value"
+        id="detailStorage">
+        —
+      </div>
+
+    </div>
+
+
+    <div class="detail-row reveal">
+
+      <div class="detail-name">
+        Condition
+      </div>
+
+      <div
+        class="detail-value"
+        id="detailCondition">
+        —
+      </div>
+
+    </div>
+
+
+    <div class="detail-row reveal">
+
+      <div class="detail-name">
+        Colour
+      </div>
+
+      <div
+        class="detail-value"
+        id="detailColour">
+        —
+      </div>
+
+    </div>
+
+
+    <div class="detail-row reveal">
+
+      <div class="detail-name">
+        Battery
+      </div>
+
+      <div
+        class="detail-value"
+        id="detailBattery">
+        —
+      </div>
+
+    </div>
+
+
+    <div class="detail-row reveal">
+
+      <div class="detail-name">
+        Included
+      </div>
+
+      <div
+        class="detail-value"
+        id="detailIncluded">
+        —
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+<!-- =========================
+     ENQUIRY FORM
+========================= -->
+
+<div
+  class="enquiry-overlay"
+  id="enquiryOverlay">
+
+  <div class="enquiry-box">
+
+    <button
+      class="enquiry-close"
+      id="enquiryClose"
+      aria-label="Close enquiry form">
+      ×
+    </button>
+
+
+    <div class="enquiry-label">
+      Diamond Nova · Enquiry
+    </div>
+
+
+    <h2 class="enquiry-title">
+      Tell us what<br>
+      you're looking for.
+    </h2>
+
+
+    <div class="selected-product">
+
+      Product:
+      <strong id="formProductName">
+        —
+      </strong>
+
+    </div>
+
+
+    <form
+      class="form"
+      id="enquiryForm">
+
+
+      <!-- PRODUCT -->
+
+      <div class="field">
+
+        <label>
+          Selected device
+        </label>
+
+        <input
+          type="text"
+          id="formProduct"
+          name="product"
+          readonly>
+
+      </div>
+
+
+      <!-- NAME -->
+
+      <div class="field">
+
+        <label for="customerName">
+          Your name
+        </label>
+
+        <input
+          type="text"
+          id="customerName"
+          name="name"
+          placeholder="Enter your name"
+          required>
+
+      </div>
+
+
+      <!-- PHONE -->
+
+      <div class="field">
+
+        <label for="customerPhone">
+          WhatsApp / phone
+        </label>
+
+        <input
+          type="tel"
+          id="customerPhone"
+          name="phone"
+          placeholder="+971..."
+          required>
+
+      </div>
+
+
+      <!-- CONTACT METHOD -->
+
+      <div class="field">
+
+        <label for="contactMethod">
+          Preferred contact
+        </label>
+
+        <select
+          id="contactMethod"
+          name="contact">
+
+          <option value="WhatsApp">
+            WhatsApp
+          </option>
+
+          <option value="Phone call">
+            Phone call
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- MESSAGE -->
+
+      <div class="field">
+
+        <label for="customerMessage">
+          Message
+        </label>
+
+        <textarea
+          id="customerMessage"
+          name="message"
+          placeholder="Anything you'd like to ask about this device?"></textarea>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="form-submit">
+
+        Send enquiry on WhatsApp
+
+      </button>
+
+
+      <div class="form-small">
+
+        Your enquiry will open in WhatsApp with
+        the selected device already included.
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="final-cta">
+
+  <div class="cta-label">
+    03 / Diamond Nova
+  </div>
+
+
+  <h2>
+    The right device<br>
+    is closer than you think.
+  </h2>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="footer-top">
+
+
+    <div>
+
+      <div class="footer-brand">
+        Diamond Nova
+      </div>
+
+      <div class="footer-small">
+        Phone Trading LLC · Dubai
+      </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="products.html">
+        Devices
+      </a>
+
+      <a href="index.html#categories">
+        Categories
+      </a>
+
+      <a href="index.html#visit">
+        Visit
+      </a>
+
+      <a
+        href="https://wa.me/971505980338"
+        target="_blank">
+        WhatsApp
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>
+      © 2026 Diamond Nova
+    </span>
+
+    <span>
+      Al Murar · Dubai · UAE
+    </span>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* =================================
+   PRODUCT DATABASE
+================================= */
+
+const products = {
+
+  "iphone-17-pro-max": {
+
+    name: "iPhone 17 Pro Max",
+
+    category: "Apple · iPhone",
+
+    description:
+      "A flagship iPhone built around Apple's latest Pro hardware, large display and advanced camera system.",
+
+    price: "AED 4,699",
+
+    storage: "256GB",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Cosmic Orange",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "Device · Accessories to be confirmed",
+
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/IPhone_17_Pro_Max_2026.jpg?width=1400"
+
+  },
+
+
+  "iphone-16-pro-max": {
+
+    name: "iPhone 16 Pro Max",
+
+    category: "Apple · iPhone",
+
+    description:
+      "A premium Pro Max iPhone with a large display, titanium design and powerful camera system.",
+
+    price: "AED 3,499",
+
+    storage: "256GB",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Natural Titanium",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "Device · Accessories to be confirmed",
+
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/IPhone_16_Pro_Max_%2854252162653%29.jpg?width=1400"
+
+  },
+
+
+  "iphone-15-pro": {
+
+    name: "iPhone 15 Pro",
+
+    category: "Apple · iPhone",
+
+    description:
+      "A compact Pro iPhone featuring a titanium build, high-performance chip and versatile camera system.",
+
+    price: "AED 2,499",
+
+    storage: "256GB",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Titanium",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "Device · Accessories to be confirmed",
+
+    image:
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1400&q=90"
+
+  },
+
+
+  "galaxy-s25-ultra": {
+
+    name: "Galaxy S25 Ultra",
+
+    category: "Samsung · Galaxy",
+
+    description:
+      "Samsung's flagship Ultra smartphone with a large display, S Pen support and advanced camera hardware.",
+
+    price: "AED 3,299",
+
+    storage: "256GB",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Titanium Silverblue",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "Device · Accessories to be confirmed",
+
+    image:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Samsung_Galaxy_S25_Ultra_2025_%281%29.jpg?width=1400"
+
+  },
+
+
+  "galaxy-s24-ultra": {
+
+    name: "Galaxy S24 Ultra",
+
+    category: "Samsung · Galaxy",
+
+    description:
+      "A powerful Ultra smartphone combining a large display, S Pen functionality and a versatile camera setup.",
+
+    price: "AED 2,699",
+
+    storage: "256GB",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Titanium Gray",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "Device · Accessories to be confirmed",
+
+    image:
+      "https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?auto=format&fit=crop&w=1400&q=90"
+
+  },
+
+
+  "pixel-9-pro": {
+
+    name: "Pixel 9 Pro",
+
+    category: "Google · Pixel",
+
+    description:
+      "Google's premium Pixel phone with a clean Android experience and computational photography features.",
+
+    price: "AED 2,399",
+
+    storage: "256GB",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Obsidian",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "Device · Accessories to be confirmed",
+
+    image:
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1400&q=90"
+
+  },
+
+
+  "oneplus-13": {
+
+    name: "OnePlus 13",
+
+    category: "OnePlus · Android",
+
+    description:
+      "A high-performance Android smartphone designed around a fast display, powerful processor and large battery.",
+
+    price: "AED 2,299",
+
+    storage: "256GB",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Midnight",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "Device · Accessories to be confirmed",
+
+    image:
+      "https://images.unsplash.com/photo-1607936854279-55e8d4c5a0c1?auto=format&fit=crop&w=1400&q=90"
+
+  },
+
+
+  "macbook-pro-14": {
+
+    name: 'MacBook Pro 14"',
+
+    category: "Apple · MacBook",
+
+    description:
+      "A professional MacBook designed for demanding creative, development and productivity workflows.",
+
+    price: "AED 5,499",
+
+    storage: "512GB",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Space Gray",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "MacBook · Charger to be confirmed",
+
+    image:
+      "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=1400&q=90"
+
+  },
+
+
+  "macbook-air-13": {
+
+    name: 'MacBook Air 13"',
+
+    category: "Apple · MacBook",
+
+    description:
+      "A slim everyday MacBook focused on portability, quiet performance and long battery life.",
+
+    price: "AED 3,399",
+
+    storage: "256GB",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Silver",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "MacBook · Charger to be confirmed",
+
+    image:
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1400&q=90"
+
+  },
+
+
+  "dell-xps-15": {
+
+    name: "Dell XPS 15",
+
+    category: "Dell · XPS",
+
+    description:
+      "A premium Windows laptop suited to productivity, creative work and everyday professional use.",
+
+    price: "AED 3,099",
+
+    storage: "512GB SSD",
+
+    condition: "Pre-owned · Demo",
+
+    colour: "Platinum",
+
+    availability: "Check with store",
+
+    battery: "To be confirmed",
+
+    included: "Laptop · Charger to be confirmed",
+
+    image:
+      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=1400&q=90"
+
+  }
+
+};
+
+
+/* =================================
+   GET PRODUCT FROM URL
+================================= */
+
+const params = new URLSearchParams(
+  window.location.search
+);
+
+const productId = params.get("id");
+
+const product =
+  products[productId] || products["iphone-17-pro-max"];
+
+
+/* =================================
+   PAGE ELEMENTS
+================================= */
+
+const productImage =
+  document.getElementById("productImage");
+
+const productName =
+  document.getElementById("productName");
+
+const productCategory =
+  document.getElementById("productCategory");
+
+const productDescription =
+  document.getElementById("productDescription");
+
+const productPrice =
+  document.getElementById("productPrice");
+
+const productStorage =
+  document.getElementById("productStorage");
+
+const productCondition =
+  document.getElementById("productCondition");
+
+const productColour =
+  document.getElementById("productColour");
+
+const productAvailability =
+  document.getElementById("productAvailability");
+
+
+/* =================================
+   LOAD PRODUCT
+================================= */
+
+productImage.src = product.image;
+
+productImage.alt = product.name;
+
+productName.textContent = product.name;
+
+productCategory.textContent = product.category;
+
+productDescription.textContent =
+  product.description;
+
+productPrice.textContent =
+  product.price;
+
+productStorage.textContent =
+  product.storage;
+
+productCondition.textContent =
+  product.condition;
+
+productColour.textContent =
+  product.colour;
+
+productAvailability.textContent =
+  product.availability;
+
+
+/* =================================
+   DETAIL TABLE
+================================= */
+
+document.getElementById("detailModel")
+  .textContent = product.name;
+
+document.getElementById("detailStorage")
+  .textContent = product.storage;
+
+document.getElementById("detailCondition")
+  .textContent = product.condition;
+
+document.getElementById("detailColour")
+  .textContent = product.colour;
+
+document.getElementById("detailBattery")
+  .textContent = product.battery;
+
+document.getElementById("detailIncluded")
+  .textContent = product.included;
+
+
+/* =================================
+   PAGE TITLE
+================================= */
+
+document.title =
+  product.name + " — Diamond Nova";
+
+
+/* =================================
+   ENQUIRY FORM
+================================= */
+
+const enquiryOverlay =
+  document.getElementById("enquiryOverlay");
+
+const enquiryBtn =
+  document.getElementById("inquiryBtn");
+
+const enquiryClose =
+  document.getElementById("enquiryClose");
+
+const formProduct =
+  document.getElementById("formProduct");
+
+const formProductName =
+  document.getElementById("formProductName");
+
+
+function openEnquiry(){
+
+  formProduct.value =
+    product.name;
+
+  formProductName.textContent =
+    product.name;
+
+  enquiryOverlay.classList.add("open");
+
+  document.body.style.overflow =
+    "hidden";
+
+}
+
+
+function closeEnquiry(){
+
+  enquiryOverlay.classList.remove("open");
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+enquiryBtn.addEventListener(
+  "click",
+  openEnquiry
+);
+
+
+enquiryClose.addEventListener(
+  "click",
+  closeEnquiry
+);
+
+
+/* =================================
+   CLICK OUTSIDE FORM
+================================= */
+
+enquiryOverlay.addEventListener(
+  "click",
+  function(event){
+
+    if(event.target === enquiryOverlay){
+
+      closeEnquiry();
+
+    }
+
+  }
+);
+
+
+/* =================================
+   ESCAPE
+================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+
+      closeEnquiry();
+
+    }
+
+  }
+);
+
+
+/* =================================
+   WHATSAPP FORM SUBMISSION
+================================= */
+
+const enquiryForm =
+  document.getElementById("enquiryForm");
+
+
+enquiryForm.addEventListener(
+  "submit",
+  function(event){
+
+    event.preventDefault();
+
+
+    const name =
+      document.getElementById(
+        "customerName"
+      ).value.trim();
+
+
+    const phone =
+      document.getElementById(
+        "customerPhone"
+      ).value.trim();
+
+
+    const contact =
+      document.getElementById(
+        "contactMethod"
+      ).value;
+
+
+    const message =
+      document.getElementById(
+        "customerMessage"
+      ).value.trim();
+
+
+    const whatsappMessage =
+`Hello Diamond Nova,
+
+I am interested in this device:
+
+Product: ${product.name}
+Price shown: ${product.price}
+Condition: ${product.condition}
+
+My details:
+Name: ${name}
+Phone / WhatsApp: ${phone}
+Preferred contact: ${contact}
+
+Message:
+${message || "I would like to know if this device is currently available."}
+
+Please confirm the current availability and final price. Thank you.`;
+
+
+    const whatsappURL =
+      "https://wa.me/971505980338?text=" +
+      encodeURIComponent(whatsappMessage);
+
+
+    window.open(
+      whatsappURL,
+      "_blank"
+    );
+
+
+  }
+);
+
+
+/* =================================
+   LOADER
+================================= */
+
+window.addEventListener(
+  "load",
+  function(){
+
+    const loader =
+      document.getElementById("loader");
+
+    setTimeout(
+      function(){
+
+        loader.classList.add("hide");
+
+      },
+      500
+    );
+
+  }
+);
+
+
+/* =================================
+   NAV SCROLL
+================================= */
+
+const nav =
+  document.getElementById("nav");
+
+
+function updateNav(){
+
+  if(window.scrollY > 40){
+
+    nav.classList.add("scrolled");
+
+  }else{
+
+    nav.classList.remove("scrolled");
+
+  }
+
+}
+
+
+window.addEventListener(
+  "scroll",
+  updateNav
+);
+
+updateNav();
+
+
+/* =================================
+   MOBILE MENU
+================================= */
+
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const mobileMenu =
+  document.getElementById("mobileMenu");
+
+const closeMenu =
+  document.getElementById("closeMenu");
+
+
+menuBtn.addEventListener(
+  "click",
+  function(){
+
+    mobileMenu.classList.add("open");
+
+  }
+);
+
+
+closeMenu.addEventListener(
+  "click",
+  function(){
+
+    mobileMenu.classList.remove("open");
+
+  }
+);
+
+
+document
+  .querySelectorAll(".mobile-menu a")
+  .forEach(function(link){
+
+    link.addEventListener(
+      "click",
+      function(){
+
+        mobileMenu.classList.remove("open");
+
+      }
+    );
+
+  });
+
+
+/* =================================
+   REVEAL ANIMATIONS
+================================= */
+
+const revealItems =
+  document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+  new IntersectionObserver(
+
+    function(entries){
+
+      entries.forEach(
+        function(entry){
+
+          if(entry.isIntersecting){
+
+            entry.target.classList.add(
+              "visible"
+            );
+
+            revealObserver.unobserve(
+              entry.target
+            );
+
+          }
+
+        }
+      );
+
+    },
+
+    {
+      threshold:.08
+    }
+
+  );
+
+
+revealItems.forEach(
+  function(item){
+
+    revealObserver.observe(item);
+
+  }
+);
+
+
+/* =================================
+   ESCAPE MOBILE MENU
+================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+
+      mobileMenu.classList.remove(
+        "open"
+      );
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
