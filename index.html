@@ -1,0 +1,2823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1"
+/>
+
+<meta name="theme-color" content="#0a0a09">
+
+<title>Diamond Nova — Premium Devices Dubai</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+
+:root{
+  --black:#0a0a09;
+  --dark:#11110f;
+  --cream:#f5f1e9;
+  --paper:#f8f5ef;
+
+  --line:rgba(255,255,255,.14);
+  --line-dark:#c9c4ba;
+
+  --serif:"Playfair Display",Georgia,serif;
+  --sans:"DM Sans",Arial,sans-serif;
+
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+
+html{
+  width:100%;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+
+body{
+  margin:0;
+  width:100%;
+  overflow-x:hidden;
+  background:var(--black);
+  color:#fff;
+  font-family:var(--sans);
+}
+
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+
+img{
+  display:block;
+  max-width:100%;
+  width:100%;
+}
+
+
+button{
+  font-family:inherit;
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  width:100%;
+  height:100vh;
+  height:100dvh;
+
+  background:var(--black);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:
+    opacity .7s ease,
+    visibility .7s ease;
+}
+
+
+.loader.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+
+.loader-inner{
+  text-align:center;
+  width:100%;
+}
+
+
+.loader-logo{
+  font-family:var(--serif);
+  font-size:28px;
+  letter-spacing:7px;
+  text-align:center;
+}
+
+
+.loader-sub{
+  margin-top:8px;
+  color:#77746d;
+  font-size:8px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+
+.loader-line{
+  width:0;
+  height:1px;
+  margin:18px auto 0;
+  background:#fff;
+
+  animation:
+    loadLine 1.3s var(--ease) forwards;
+}
+
+
+@keyframes loadLine{
+  to{
+    width:130px;
+  }
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.site-nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+
+  z-index:1000;
+
+  width:100%;
+
+  padding:25px 6%;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  transition:all .4s ease;
+}
+
+
+.site-nav.scrolled{
+  padding-top:16px;
+  padding-bottom:16px;
+
+  background:rgba(10,10,9,.92);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+
+
+.nav-logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  font-family:var(--serif);
+  font-size:17px;
+
+  letter-spacing:4px;
+}
+
+
+.logo-symbol{
+  width:29px;
+  height:29px;
+
+  border:1px solid rgba(255,255,255,.65);
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  font-size:13px;
+}
+
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:34px;
+}
+
+
+.nav-links a{
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  color:#aaa69e;
+
+  transition:
+    color .3s ease,
+    border-color .3s ease;
+}
+
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+
+.nav-contact{
+  border:1px solid rgba(255,255,255,.38);
+  padding:12px 17px;
+  border-radius:100px;
+}
+
+
+.menu-toggle{
+  display:none;
+
+  width:42px;
+  height:42px;
+
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:50%;
+
+  background:transparent;
+  color:#fff;
+
+  font-size:16px;
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu{
+  position:fixed;
+  inset:0;
+
+  z-index:999;
+
+  background:#0a0a09;
+
+  padding:120px 8%;
+
+  transform:translateY(-100%);
+
+  transition:
+    transform .6s var(--ease);
+}
+
+
+.mobile-menu.open{
+  transform:translateY(0);
+}
+
+
+.mobile-menu a{
+  display:block;
+
+  padding:17px 0;
+
+  border-bottom:1px solid var(--line);
+
+  font-family:var(--serif);
+  font-size:38px;
+}
+
+
+/* =========================
+   COMMON
+========================= */
+
+.section-label{
+  color:#77746d;
+
+  font-size:8px;
+
+  letter-spacing:2.7px;
+
+  text-transform:uppercase;
+}
+
+
+.reveal{
+  opacity:0;
+
+  transform:translateY(35px);
+
+  transition:
+    opacity .9s ease,
+    transform .9s var(--ease);
+}
+
+
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  width:100%;
+
+  min-height:100vh;
+  min-height:100svh;
+
+  position:relative;
+
+  display:flex;
+  align-items:flex-end;
+
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.18),
+      rgba(0,0,0,.82)
+    ),
+    url("https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=2200&q=88")
+    center/cover;
+}
+
+
+.hero::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.42),
+      transparent 62%
+    );
+
+  pointer-events:none;
+}
+
+
+.hero-content{
+  position:relative;
+
+  z-index:2;
+
+  width:100%;
+
+  padding:
+    0
+    7%
+    8vh;
+}
+
+
+.hero h1{
+  max-width:1000px;
+
+  margin:0;
+
+  font-family:var(--serif);
+
+  font-size:
+    clamp(
+      48px,
+      10vw,
+      145px
+    );
+
+  font-weight:400;
+
+  line-height:.88;
+
+  letter-spacing:-4px;
+}
+
+
+.hero h1 em{
+  font-style:italic;
+}
+
+
+.hero-bottom{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:40px;
+
+  margin-top:42px;
+
+  flex-wrap:wrap;
+}
+
+
+.hero-copy{
+  max-width:450px;
+
+  color:#bbb7af;
+
+  font-size:12px;
+
+  line-height:1.8;
+}
+
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+
+.button{
+  min-height:48px;
+
+  padding:
+    0
+    22px;
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border-radius:100px;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  transition:
+    transform .35s ease,
+    background .35s ease,
+    color .35s ease;
+}
+
+
+.button:hover{
+  transform:translateY(-2px);
+}
+
+
+.button-primary{
+  background:#fff;
+  color:#111;
+}
+
+
+.button-ghost{
+  color:#fff;
+
+  border:
+    1px solid
+    rgba(255,255,255,.4);
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+  background:var(--cream);
+
+  color:#171715;
+
+  padding:
+    145px
+    7%;
+
+  width:100%;
+}
+
+
+.intro-grid{
+  display:grid;
+
+  grid-template-columns:
+    .25fr
+    1.5fr;
+
+  gap:75px;
+}
+
+
+.intro-copy h2{
+  margin:
+    25px
+    0
+    0;
+
+  font-family:var(--serif);
+
+  font-weight:400;
+
+  font-size:
+    clamp(
+      40px,
+      6vw,
+      90px
+    );
+
+  line-height:.95;
+
+  letter-spacing:-3px;
+}
+
+
+.intro-copy h2 em{
+  font-style:italic;
+}
+
+
+.intro-copy p{
+  max-width:560px;
+
+  margin:
+    38px
+    0
+    0;
+
+  color:#77736c;
+
+  font-size:13px;
+
+  line-height:1.9;
+}
+
+
+/* =========================
+   FEATURED DEVICES
+========================= */
+
+.devices-section{
+  background:#151513;
+
+  padding:
+    150px
+    7%
+    160px;
+
+  width:100%;
+}
+
+
+.devices-header{
+  display:grid;
+
+  grid-template-columns:
+    .25fr
+    1.5fr;
+
+  gap:75px;
+
+  margin-bottom:90px;
+}
+
+
+.devices-heading{
+  margin:23px 0 0;
+
+  font-family:var(--serif);
+
+  font-size:
+    clamp(
+      46px,
+      6vw,
+      88px
+    );
+
+  font-weight:400;
+
+  line-height:1;
+
+  letter-spacing:-3px;
+}
+
+
+.devices-heading em{
+  font-style:italic;
+}
+
+
+.device-feature{
+  display:grid;
+
+  grid-template-columns:
+    1.45fr
+    .55fr;
+
+  gap:22px;
+
+  margin-bottom:22px;
+}
+
+
+.device-image{
+  position:relative;
+
+  height:
+    min(
+      65vw,
+      650px
+    );
+
+  overflow:hidden;
+
+  background:#222;
+}
+
+
+.device-image img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  transition:
+    transform .8s var(--ease);
+}
+
+
+.device-feature:hover
+.device-image img{
+  transform:scale(1.035);
+}
+
+
+.device-overlay{
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.05),
+      rgba(0,0,0,.65)
+    );
+}
+
+
+.device-number{
+  position:absolute;
+
+  top:25px;
+  left:27px;
+
+  color:#fff;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+}
+
+
+.device-info{
+  position:absolute;
+
+  left:30px;
+  right:30px;
+  bottom:28px;
+
+  color:#fff;
+}
+
+
+.device-category{
+  font-size:8px;
+
+  letter-spacing:2px;
+
+  color:#bcb8b0;
+}
+
+
+.device-info h3{
+  margin:
+    10px
+    0
+    0;
+
+  font-family:var(--serif);
+
+  font-size:
+    clamp(
+      34px,
+      4vw,
+      60px
+    );
+
+  font-weight:400;
+
+  line-height:.95;
+}
+
+
+.device-side{
+  min-height:650px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:space-between;
+
+  padding:30px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.14);
+}
+
+
+.device-side-top{
+  color:#77746d;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+}
+
+
+.device-side h3{
+  margin:0;
+
+  font-family:var(--serif);
+
+  font-size:40px;
+
+  font-weight:400;
+
+  line-height:1;
+}
+
+
+.device-side p{
+  color:#85827b;
+
+  font-size:11px;
+
+  line-height:1.8;
+
+  max-width:270px;
+}
+
+
+.device-side-link{
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+.device-side-link span{
+  width:30px;
+  height:30px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.3);
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+}
+
+
+/* =========================
+   CATEGORY LIBRARY
+========================= */
+
+.category-section{
+  background:#f8f5ef;
+
+  color:#151513;
+
+  padding:
+    150px
+    7%
+    155px;
+
+  width:100%;
+}
+
+
+.category-header{
+  display:grid;
+
+  grid-template-columns:
+    .25fr
+    1.5fr;
+
+  gap:75px;
+
+  margin-bottom:85px;
+}
+
+
+.category-heading{
+  margin:23px 0 0;
+
+  font-family:var(--serif);
+
+  font-size:
+    clamp(
+      48px,
+      6vw,
+      84px
+    );
+
+  font-weight:400;
+
+  line-height:.95;
+
+  letter-spacing:-3px;
+}
+
+
+.category-heading em{
+  font-style:italic;
+}
+
+
+.category-row{
+  min-height:180px;
+
+  display:grid;
+
+  grid-template-columns:
+    70px
+    190px
+    1fr
+    60px;
+
+  align-items:center;
+
+  gap:28px;
+
+  border-top:
+    1px solid
+    #c9c5bd;
+
+  cursor:pointer;
+
+  transition:
+    transform .25s ease;
+}
+
+
+.category-row:last-child{
+  border-bottom:
+    1px solid
+    #c9c5bd;
+}
+
+
+.category-row:hover{
+  transform:
+    translateX(8px);
+}
+
+
+.category-number{
+  color:#88847c;
+
+  font-size:9px;
+}
+
+
+.category-image{
+  width:190px;
+  height:115px;
+
+  overflow:hidden;
+}
+
+
+.category-image img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  transition:
+    transform .6s var(--ease);
+}
+
+
+.category-row:hover
+.category-image img{
+  transform:scale(1.05);
+}
+
+
+.category-type{
+  color:#77736c;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+}
+
+
+.category-name{
+  margin-top:8px;
+
+  font-family:var(--serif);
+
+  font-size:32px;
+
+  font-weight:400;
+}
+
+
+.category-arrow{
+  font-size:18px;
+}
+
+
+/* =========================
+   STORE / DUBAI
+========================= */
+
+.store-section{
+  background:var(--cream);
+
+  color:#171715;
+
+  padding:
+    125px
+    7%
+    145px;
+
+  width:100%;
+}
+
+
+.store-grid{
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:70px;
+
+  align-items:center;
+}
+
+
+.store-image{
+  height:600px;
+
+  overflow:hidden;
+}
+
+
+.store-image img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+}
+
+
+.store-copy h2{
+  margin:
+    25px
+    0
+    0;
+
+  font-family:var(--serif);
+
+  font-size:
+    clamp(
+      48px,
+      5.5vw,
+      78px
+    );
+
+  line-height:.96;
+
+  font-weight:400;
+
+  letter-spacing:-3px;
+}
+
+
+.store-copy h2 em{
+  font-style:italic;
+}
+
+
+.store-copy-text{
+  max-width:450px;
+
+  margin-top:35px;
+
+  color:#77736c;
+
+  font-size:13px;
+
+  line-height:1.9;
+}
+
+
+.store-details{
+  margin-top:40px;
+
+  border-top:
+    1px solid
+    #c9c4ba;
+}
+
+
+.store-detail{
+  padding:
+    19px
+    0;
+
+  display:grid;
+
+  grid-template-columns:110px 1fr;
+
+  gap:25px;
+
+  border-bottom:
+    1px solid
+    #c9c4ba;
+}
+
+
+.store-detail-label{
+  color:#77736c;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+.store-detail-value{
+  font-size:12px;
+
+  line-height:1.7;
+}
+
+
+.store-actions{
+  display:flex;
+
+  gap:12px;
+
+  flex-wrap:wrap;
+
+  margin-top:30px;
+}
+
+
+.dark-button{
+  min-height:48px;
+
+  padding:
+    0
+    22px;
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border-radius:100px;
+
+  background:#151513;
+
+  color:#fff;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+.outline-button{
+  min-height:48px;
+
+  padding:
+    0
+    22px;
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border-radius:100px;
+
+  border:
+    1px solid
+    #aaa59b;
+
+  color:#151513;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.contact-section{
+  background:#eeeae2;
+
+  color:#151513;
+
+  padding:
+    145px
+    7%
+    160px;
+
+  width:100%;
+}
+
+
+.contact-section h2{
+  margin:0;
+
+  font-family:var(--serif);
+
+  font-size:
+    clamp(
+      50px,
+      6vw,
+      90px
+    );
+
+  font-weight:400;
+
+  line-height:.93;
+
+  letter-spacing:-3px;
+}
+
+
+.contact-section h2 em{
+  font-style:italic;
+}
+
+
+.contact-copy{
+  max-width:420px;
+
+  margin-top:32px;
+
+  color:#77736c;
+
+  font-size:13px;
+
+  line-height:1.9;
+}
+
+
+.contact-actions{
+  margin-top:32px;
+
+  display:flex;
+
+  gap:12px;
+
+  flex-wrap:wrap;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer{
+  background:#090908;
+
+  color:#fff;
+
+  padding:
+    85px
+    7%
+    35px;
+
+  width:100%;
+}
+
+
+.footer-top{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  gap:50px;
+
+  padding-bottom:70px;
+}
+
+
+.footer-brand{
+  font-family:var(--serif);
+
+  font-size:28px;
+
+  letter-spacing:4px;
+}
+
+
+.footer-sub{
+  margin-top:12px;
+
+  color:#77746d;
+
+  font-size:9px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+.footer-links{
+  display:flex;
+
+  gap:30px;
+
+  flex-wrap:wrap;
+}
+
+
+.footer-links a{
+  color:#99958d;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+
+.footer-bottom{
+  padding-top:25px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.12);
+
+  color:#66635e;
+
+  font-size:8px;
+
+  letter-spacing:1px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .nav-links{
+    display:none;
+  }
+
+
+  .menu-toggle{
+    display:block;
+  }
+
+
+  .intro-grid,
+  .devices-header,
+  .category-header{
+    grid-template-columns:1fr;
+
+    gap:30px;
+  }
+
+
+  .device-feature{
+    grid-template-columns:1fr;
+  }
+
+
+  .device-side{
+    min-height:380px;
+  }
+
+
+  .store-grid{
+    grid-template-columns:1fr;
+
+    gap:50px;
+  }
+
+
+  .store-image{
+    height:520px;
+  }
+
+
+  .category-row{
+    grid-template-columns:
+      35px
+      120px
+      1fr
+      35px;
+
+    gap:15px;
+  }
+
+
+  .category-image{
+    width:120px;
+    height:80px;
+  }
+
+
+  .category-name{
+    font-size:25px;
+  }
+
+
+  .footer-top{
+    flex-direction:column;
+  }
+
+}
+  <style>
+
+/* =========================
+   MOBILE REFINEMENT
+========================= */
+
+@media(max-width:600px){
+
+  .site-nav{
+    padding:
+      19px
+      6%;
+  }
+
+
+  .nav-logo{
+    font-size:14px;
+    letter-spacing:3px;
+  }
+
+
+  .logo-symbol{
+    width:27px;
+    height:27px;
+    font-size:12px;
+  }
+
+
+  .hero{
+    min-height:100svh;
+
+    background-position:
+      62% center;
+  }
+
+
+  .hero-content{
+    padding:
+      0
+      6%
+      6vh;
+  }
+
+
+  .hero h1{
+    font-size:14vw;
+
+    letter-spacing:-2px;
+
+    line-height:.9;
+  }
+
+
+  .hero-bottom{
+    margin-top:30px;
+
+    gap:25px;
+  }
+
+
+  .hero-copy{
+    font-size:11px;
+
+    line-height:1.75;
+  }
+
+
+  .hero-actions{
+    width:100%;
+  }
+
+
+  .button{
+    min-height:46px;
+
+    padding:
+      0
+      18px;
+  }
+
+
+  .intro{
+    padding:
+      100px
+      6%;
+  }
+
+
+  .intro-copy h2{
+    font-size:
+      clamp(
+        39px,
+        11vw,
+        60px
+      );
+
+    letter-spacing:-2px;
+  }
+
+
+  .intro-copy p{
+    margin-top:28px;
+
+    font-size:12px;
+  }
+
+
+  .devices-section{
+    padding:
+      105px
+      6%
+      110px;
+  }
+
+
+  .devices-heading{
+    font-size:
+      clamp(
+        43px,
+        11vw,
+        64px
+      );
+
+    letter-spacing:-2px;
+  }
+
+
+  .devices-header{
+    margin-bottom:60px;
+  }
+
+
+  .device-image{
+    height:125vw;
+  }
+
+
+  .device-info{
+    left:22px;
+    right:22px;
+    bottom:22px;
+  }
+
+
+  .device-info h3{
+    font-size:38px;
+  }
+
+
+  .device-side{
+    min-height:390px;
+
+    padding:24px;
+  }
+
+
+  .device-side h3{
+    font-size:35px;
+  }
+
+
+  .category-section{
+    padding:
+      105px
+      6%
+      110px;
+  }
+
+
+  .category-heading{
+    font-size:
+      clamp(
+        44px,
+        11vw,
+        65px
+      );
+
+    letter-spacing:-2px;
+  }
+
+
+  .category-row{
+    min-height:125px;
+
+    grid-template-columns:
+      25px
+      82px
+      1fr
+      20px;
+
+    gap:10px;
+  }
+
+
+  .category-image{
+    width:82px;
+    height:58px;
+  }
+
+
+  .category-name{
+    font-size:21px;
+  }
+
+
+  .category-type{
+    font-size:7px;
+
+    letter-spacing:1.5px;
+  }
+
+
+  .category-number{
+    font-size:8px;
+  }
+
+
+  .category-arrow{
+    font-size:15px;
+  }
+
+
+  .store-section{
+    padding:
+      95px
+      6%
+      110px;
+  }
+
+
+  .store-image{
+    height:430px;
+  }
+
+
+  .store-copy h2{
+    font-size:
+      clamp(
+        45px,
+        11vw,
+        65px
+      );
+
+    letter-spacing:-2px;
+  }
+
+
+  .store-copy-text{
+    font-size:12px;
+  }
+
+
+  .store-detail{
+    grid-template-columns:
+      90px
+      1fr;
+
+    gap:15px;
+  }
+
+
+  .store-detail-value{
+    font-size:11px;
+  }
+
+
+  .contact-section{
+    padding:
+      105px
+      6%
+      115px;
+  }
+
+
+  .contact-section h2{
+    font-size:
+      clamp(
+        45px,
+        11vw,
+        65px
+      );
+
+    letter-spacing:-2px;
+  }
+
+
+  .contact-copy{
+    font-size:12px;
+  }
+
+
+  .site-footer{
+    padding:
+      70px
+      6%
+      30px;
+  }
+
+
+  .footer-brand{
+    font-size:23px;
+  }
+
+
+  .footer-links{
+    gap:18px;
+  }
+
+}
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     LOADER
+========================= -->
+
+<div
+  class="loader"
+  id="loader"
+>
+
+  <div class="loader-inner">
+
+    <div class="loader-logo">
+      DIAMOND NOVA
+    </div>
+
+    <div class="loader-sub">
+      Phone Trading LLC · Dubai
+    </div>
+
+    <div class="loader-line"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav
+  class="site-nav"
+  id="siteNav"
+>
+
+  <a
+    href="#home"
+    class="nav-logo"
+  >
+
+    <span class="logo-symbol">
+      D
+    </span>
+
+    <span>
+      DIAMOND NOVA
+    </span>
+
+  </a>
+
+
+  <div class="nav-links">
+
+    <a href="#about">
+      About
+    </a>
+
+    <a href="products.html">
+      Devices
+    </a>
+
+    <a href="#categories">
+      Categories
+    </a>
+
+    <a href="#visit">
+      Visit
+    </a>
+
+    <a
+      href="https://wa.me/971505980338"
+      target="_blank"
+      class="nav-contact"
+    >
+      WhatsApp
+    </a>
+
+  </div>
+
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Open menu"
+  >
+    ☰
+  </button>
+
+</nav>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div
+  class="mobile-menu"
+  id="mobileMenu"
+>
+
+  <a
+    class="mobile-link"
+    href="#about"
+  >
+    About
+  </a>
+
+  <a
+    class="mobile-link"
+    href="products.html"
+  >
+    Devices
+  </a>
+
+  <a
+    class="mobile-link"
+    href="#categories"
+  >
+    Categories
+  </a>
+
+  <a
+    class="mobile-link"
+    href="#visit"
+  >
+    Visit
+  </a>
+
+  <a
+    class="mobile-link"
+    href="https://wa.me/971505980338"
+    target="_blank"
+  >
+    WhatsApp
+  </a>
+
+</div>
+
+
+<main
+  style="
+    width:100%;
+    overflow-x:hidden;
+  "
+>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section
+  class="hero"
+  id="home"
+>
+
+  <div class="hero-content reveal">
+
+    <div
+      class="section-label"
+      style="
+        color:#c0bcb4;
+        margin-bottom:24px;
+      "
+    >
+      Premium devices · Al Murar · Dubai
+    </div>
+
+
+    <h1>
+
+      Devices made
+      <br>
+
+      to feel
+      <em>
+        right.
+      </em>
+
+    </h1>
+
+
+    <div class="hero-bottom">
+
+      <p class="hero-copy">
+
+        Discover a carefully selected range of
+        pre-owned smartphones and electronics
+        at Diamond Nova, right in the heart of
+        Al Murar, Dubai.
+
+      </p>
+
+
+      <div class="hero-actions">
+
+        <a
+          href="products.html"
+          class="button button-primary"
+        >
+          Explore devices
+        </a>
+
+
+        <a
+          href="https://wa.me/971505980338"
+          target="_blank"
+          class="button button-ghost"
+        >
+          WhatsApp us
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT / INTRO
+========================= -->
+
+<section
+  class="intro"
+  id="about"
+>
+
+  <div class="intro-grid">
+
+    <div class="section-label">
+      01 / Diamond Nova
+    </div>
+
+
+    <div class="intro-copy reveal">
+
+      <h2>
+
+        The right device,
+        <br>
+
+        without the
+        <em>
+          retail price.
+        </em>
+
+      </h2>
+
+
+      <p>
+
+        Diamond Nova Phone Trading LLC is a
+        local mobile phone store in Al Murar,
+        Dubai, focused on pre-owned smartphones
+        and electronics.
+
+        <br><br>
+
+        We keep the experience simple:
+        discover the device you want,
+        see it in person, and get help from
+        a local team.
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURED DEVICES
+========================= -->
+
+<section
+  class="devices-section"
+  id="devices"
+>
+
+  <div class="devices-header">
+
+    <div class="section-label">
+      02 / Featured devices
+    </div>
+
+
+    <div class="reveal">
+
+      <h2 class="devices-heading">
+
+        Technology,
+        <br>
+
+        <em>
+          properly presented.
+        </em>
+
+      </h2>
+
+    </div>
+
+  </div>
+
+
+  <div class="device-feature">
+
+
+    <!-- MAIN FEATURE -->
+
+    <a
+      href="products.html"
+      class="device-image reveal"
+    >
+
+      <img
+        src="https://images.unsplash.com/photo-1592286927505-2fd4a14b9a36?auto=format&fit=crop&w=1800&q=88"
+        alt="Premium smartphone"
+        loading="lazy"
+      >
+
+
+      <div class="device-overlay"></div>
+
+
+      <div class="device-number">
+        01 / FEATURED
+      </div>
+
+
+      <div class="device-info">
+
+        <div class="device-category">
+          IPHONE · SMARTPHONES
+        </div>
+
+        <h3>
+          Find your
+          <em>
+            next device.
+          </em>
+        </h3>
+
+      </div>
+
+    </a>
+
+
+    <!-- SIDE CARD -->
+
+    <div class="device-side reveal">
+
+      <div class="device-side-top">
+        DIAMOND NOVA / COLLECTION
+      </div>
+
+
+      <div>
+
+        <h3>
+          From
+          <br>
+          everyday
+          <br>
+          essentials
+          <br>
+          to
+          <em>
+            flagship.
+          </em>
+        </h3>
+
+      </div>
+
+
+      <div>
+
+        <p>
+
+          Explore representative devices
+          from Apple, Samsung, Google,
+          OnePlus and selected laptops.
+
+        </p>
+
+
+        <a
+          href="products.html"
+          class="device-side-link"
+        >
+
+          View collection
+
+          <span>
+            ↗
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section
+  class="category-section"
+  id="categories"
+>
+
+  <div class="category-header">
+
+    <div class="section-label">
+      03 / Collection
+    </div>
+
+
+    <div class="reveal">
+
+      <h2 class="category-heading">
+
+        Different devices.
+        <br>
+
+        <em>
+          One place.
+        </em>
+
+      </h2>
+
+    </div>
+
+  </div>
+
+
+  <!-- IPHONE -->
+
+  <a
+    href="products.html?category=iphone"
+    class="category-row reveal"
+  >
+
+    <div class="category-number">
+      01
+    </div>
+
+
+    <div class="category-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1591337676887-a217a6970a8a?auto=format&fit=crop&w=700&q=85"
+        alt="iPhone"
+        loading="lazy"
+      >
+
+    </div>
+
+
+    <div>
+
+      <div class="category-type">
+        APPLE
+      </div>
+
+      <div class="category-name">
+        iPhone
+      </div>
+
+    </div>
+
+
+    <div class="category-arrow">
+      ↗
+    </div>
+
+  </a>
+
+
+  <!-- SAMSUNG -->
+
+  <a
+    href="products.html?category=samsung"
+    class="category-row reveal"
+  >
+
+    <div class="category-number">
+      02
+    </div>
+
+
+    <div class="category-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=700&q=85"
+        alt="Samsung smartphone"
+        loading="lazy"
+      >
+
+    </div>
+
+
+    <div>
+
+      <div class="category-type">
+        SAMSUNG
+      </div>
+
+      <div class="category-name">
+        Galaxy
+      </div>
+
+    </div>
+
+
+    <div class="category-arrow">
+      ↗
+    </div>
+
+  </a>
+
+
+  <!-- GOOGLE -->
+
+  <a
+    href="products.html?category=google"
+    class="category-row reveal"
+  >
+
+    <div class="category-number">
+      03
+    </div>
+
+
+    <div class="category-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=85"
+        alt="Modern smartphone"
+        loading="lazy"
+      >
+
+    </div>
+
+
+    <div>
+
+      <div class="category-type">
+        GOOGLE · ONEPLUS
+      </div>
+
+      <div class="category-name">
+        Android
+      </div>
+
+    </div>
+
+
+    <div class="category-arrow">
+      ↗
+    </div>
+
+  </a>
+
+
+  <!-- LAPTOPS -->
+
+  <a
+    href="products.html?category=laptops"
+    class="category-row reveal"
+  >
+
+    <div class="category-number">
+      04
+    </div>
+
+
+    <div class="category-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=700&q=85"
+        alt="Laptop"
+        loading="lazy"
+      >
+
+    </div>
+
+
+    <div>
+
+      <div class="category-type">
+        APPLE · DELL
+      </div>
+
+      <div class="category-name">
+        Laptops
+      </div>
+
+    </div>
+
+
+    <div class="category-arrow">
+      ↗
+    </div>
+
+  </a>
+
+</section>
+
+
+<!-- =========================
+     STORE / VISIT
+========================= -->
+
+<section
+  class="store-section"
+  id="visit"
+>
+
+  <div class="store-grid">
+
+
+    <div class="store-image reveal">
+
+      <img
+        src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=1600&q=85"
+        alt="Mobile phone store"
+        loading="lazy"
+      >
+
+    </div>
+
+
+    <div class="store-copy reveal">
+
+      <div class="section-label">
+        04 / Visit us
+      </div>
+
+
+      <h2>
+
+        Come see us
+        <br>
+
+        in
+        <em>
+          Dubai.
+        </em>
+
+      </h2>
+
+
+      <p class="store-copy-text">
+
+        Visit Diamond Nova in Al Murar
+        and browse devices in person.
+        Our store is open every day,
+        from late morning until midnight.
+
+      </p>
+
+
+      <div class="store-details">
+
+
+        <div class="store-detail">
+
+          <div class="store-detail-label">
+            Address
+          </div>
+
+          <div class="store-detail-value">
+            Opposite Fatima Ahmed Mosque,
+            Al Murar, Dubai, UAE
+          </div>
+
+        </div>
+
+
+        <div class="store-detail">
+
+          <div class="store-detail-label">
+            Hours
+          </div>
+
+          <div class="store-detail-value">
+            Monday — Sunday
+            <br>
+            11:00 AM — 12:00 AM
+          </div>
+
+        </div>
+
+
+        <div class="store-detail">
+
+          <div class="store-detail-label">
+            Phone
+          </div>
+
+          <div class="store-detail-value">
+            +971 50 598 0338
+          </div>
+
+        </div>
+
+
+        <div class="store-detail">
+
+          <div class="store-detail-label">
+            Rating
+          </div>
+
+          <div class="store-detail-value">
+            4.7 / 5 · 23 reviews
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="store-actions">
+
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Diamond%20Nova%20Phone%20Trading%20LLC%20Al%20Murar%20Dubai"
+          target="_blank"
+          class="dark-button"
+        >
+          Open Maps
+        </a>
+
+
+        <a
+          href="tel:+971505980338"
+          class="outline-button"
+        >
+          Call now
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section
+  class="contact-section"
+>
+
+  <div class="section-label">
+    05 / Get in touch
+  </div>
+
+
+  <h2>
+
+    Looking for a
+    <br>
+
+    new
+    <em>
+      device?
+    </em>
+
+  </h2>
+
+
+  <p class="contact-copy">
+
+    Browse the collection online or
+    message Diamond Nova directly
+    for a quick enquiry.
+
+  </p>
+
+
+  <div class="contact-actions">
+
+    <a
+      href="products.html"
+      class="dark-button"
+    >
+      Browse devices
+    </a>
+
+
+    <a
+      href="https://wa.me/971505980338"
+      target="_blank"
+      class="outline-button"
+    >
+      WhatsApp Diamond Nova
+    </a>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="site-footer">
+
+  <div class="footer-top">
+
+
+    <div>
+
+      <div class="footer-brand">
+        DIAMOND NOVA
+      </div>
+
+
+      <div class="footer-sub">
+        Phone Trading LLC · Dubai
+      </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="products.html">
+        Devices
+      </a>
+
+      <a href="#categories">
+        Categories
+      </a>
+
+      <a href="#visit">
+        Visit
+      </a>
+
+      <a
+        href="https://wa.me/971505980338"
+        target="_blank"
+      >
+        WhatsApp
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    © 2026 Diamond Nova Phone Trading LLC
+    · Al Murar · Dubai · UAE
+
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+
+/* =========================
+   LOADER
+========================= */
+
+function hideLoader(){
+
+  const loader =
+    document.getElementById("loader");
+
+  if(loader){
+
+    loader.classList.add("hidden");
+
+    document.body.style.overflow="";
+
+  }
+
+}
+
+
+window.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    setTimeout(
+      hideLoader,
+      800
+    );
+
+  }
+);
+
+
+window.addEventListener(
+  "load",
+  function(){
+
+    setTimeout(
+      hideLoader,
+      400
+    );
+
+  }
+);
+
+
+setTimeout(
+  hideLoader,
+  2500
+);
+
+
+/* =========================
+   NAV SCROLL
+========================= */
+
+const siteNav =
+  document.getElementById("siteNav");
+
+
+window.addEventListener(
+  "scroll",
+  function(){
+
+    if(window.scrollY > 40){
+
+      siteNav.classList.add("scrolled");
+
+    }else{
+
+      siteNav.classList.remove("scrolled");
+
+    }
+
+  },
+  {
+    passive:true
+  }
+);
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuToggle =
+  document.getElementById("menuToggle");
+
+
+const mobileMenu =
+  document.getElementById("mobileMenu");
+
+
+menuToggle.addEventListener(
+  "click",
+  function(){
+
+    mobileMenu.classList.toggle("open");
+
+  }
+);
+
+
+document
+  .querySelectorAll(".mobile-link")
+  .forEach(
+    function(link){
+
+      link.addEventListener(
+        "click",
+        function(e){
+
+          const target =
+            link.getAttribute("href");
+
+
+          if(target &&
+             target.startsWith("#")){
+
+            e.preventDefault();
+
+            mobileMenu.classList.remove("open");
+
+
+            setTimeout(
+              function(){
+
+                document
+                  .querySelector(target)
+                  ?.scrollIntoView({
+                    behavior:"smooth"
+                  });
+
+              },
+              350
+            );
+
+          }else{
+
+            mobileMenu.classList.remove("open");
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================
+   REVEAL ANIMATIONS
+========================= */
+
+const revealItems =
+  document.querySelectorAll(
+    ".reveal"
+  );
+
+
+const observer =
+  new IntersectionObserver(
+    function(entries){
+
+      entries.forEach(
+        function(entry){
+
+          if(entry.isIntersecting){
+
+            entry.target
+              .classList
+              .add("visible");
+
+
+            observer.unobserve(
+              entry.target
+            );
+
+          }
+
+        }
+      );
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+
+revealItems.forEach(
+  function(item){
+
+    observer.observe(item);
+
+  }
+);
+
+
+/* =========================
+   CLOSE MOBILE MENU
+========================= */
+
+document.addEventListener(
+  "keydown",
+  function(e){
+
+    if(e.key === "Escape"){
+
+      mobileMenu
+        .classList
+        .remove("open");
+
+    }
+
+  }
+);
+
+
+</script>
+
+
+</body>
+</html>
